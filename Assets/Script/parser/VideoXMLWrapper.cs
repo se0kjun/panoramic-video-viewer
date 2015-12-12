@@ -4,6 +4,7 @@ using System.Collections;
 public class VideoXMLWrapper {
 	private string _file;
 	private int _fileSequence;
+    private int _fps;
 
 	public string VideoFile {
 		get {
@@ -17,8 +18,17 @@ public class VideoXMLWrapper {
 		}
 	}
 
-	public VideoXMLWrapper(string _f, int _s) {
+    public int FPS
+    {
+        get
+        {
+            return _fps;
+        }
+    }
+
+	public VideoXMLWrapper(string _f, int _s, int _fs) {
 		_file = _f;
 		_fileSequence = _s;
+        _fps = _fs;
 	}
 }

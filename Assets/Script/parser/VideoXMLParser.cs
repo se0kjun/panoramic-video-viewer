@@ -35,7 +35,8 @@ public class VideoXMLParser {
 		foreach(XmlNode video in video_node) {
 			VideoXMLWrapper tmp = new VideoXMLWrapper(
 				video.InnerText,
-				int.Parse(video.Attributes.GetNamedItem("seq").Value)
+				int.Parse(video.Attributes.GetNamedItem("seq").Value),
+                int.Parse(video.Attributes.GetNamedItem("frame").Value)
 				);
 			_VideoWrapper.Add (tmp);
 		}
