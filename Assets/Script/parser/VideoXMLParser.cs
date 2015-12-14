@@ -29,14 +29,16 @@ public class VideoXMLParser {
 	}
 
 	public void ParseXML() {
-		XmlNodeList video_node = _XMLDocument.SelectNodes("/videos/video");
-		XmlNodeList marker_node = _XMLDocument.SelectNodes("/markers/marker");
+		XmlNodeList video_node = _XMLDocument.SelectNodes("/data/videos/video");
+		XmlNodeList marker_node = _XMLDocument.SelectNodes("/data/markers/marker");
 
 		foreach(XmlNode video in video_node) {
-			VideoXMLWrapper tmp = new VideoXMLWrapper(
-				video.InnerText,
-				int.Parse(video.Attributes.GetNamedItem("seq").Value),
-                int.Parse(video.Attributes.GetNamedItem("frame").Value)
+            VideoXMLWrapper tmp = new VideoXMLWrapper(
+                video.InnerText,
+                int.Parse(video.Attributes.GetNamedItem("seq").Value),
+                int.Parse(video.Attributes.GetNamedItem("frame").Value),
+                int.Parse(video.Attributes.GetNamedItem("height").Value),
+                int.Parse(video.Attributes.GetNamedItem("width").Value)
 				);
 			_VideoWrapper.Add (tmp);
 		}
@@ -47,11 +49,11 @@ public class VideoXMLParser {
 			foreach(XmlNode track in track_list) {
 				MarkerXMLWrapper tmp = new MarkerXMLWrapper(markerId);
 				string video_id = track.Attributes.GetNamedItem("video").Value;
-				int pos_x = int.Parse(track.Attributes.GetNamedItem("position_x").Value.ToString());
-				int pos_y = int.Parse(track.Attributes.GetNamedItem("position_y").Value.ToString());
+				int pos_x = (int)float.Parse(track.Attributes.GetNamedItem("position_x").Value.ToString());
+				int pos_y = (int)float.Parse(track.Attributes.GetNamedItem("position_y").Value.ToString());
 				int frame_id = int.Parse(track.Attributes.GetNamedItem("frame").Value.ToString());
 				tmp.TrackList.Add (new MarkerWrapper(
-					video_id, frame_id, pos_x, pos_y
+					video_id, frame_id, pos_x, pos_y, _VideoWrapper
 					));
 			}
 		}
