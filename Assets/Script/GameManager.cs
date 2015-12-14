@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
 	public static MovieTimer GlobalMovieTimer;
 
 	void Start () {
+        cube_movie = new List<MovieTexture>();
         GlobalMovieTimer = new MovieTimer(0.0f);
 
 		if(XMLFileName != null) {
@@ -24,23 +25,28 @@ public class GameManager : MonoBehaviour {
 		}
         foreach (GameObject plane in cube_plane)
         {
-            MovieTexture tmp = GetComponent<Renderer>().material.mainTexture as MovieTexture;
-            tmp.Play();
-            cube_movie.Add(tmp);
+            MovieTexture tmp = plane.GetComponent<Renderer>().material.mainTexture as MovieTexture;
+            if (tmp != null)
+            {
+                tmp.Play();
+                cube_movie.Add(tmp);
+            }
         }
     }
 
     void Update () {
         GlobalMovieTimer += Time.deltaTime;
 
-		//foreach(MarkerXMLWrapper a in parser.MarkerList) {
-		//	foreach(MarkerWrapper b in a.TrackList) {
-		//		if(b.M_Timer == GlobalMovieTimer) {
-		//			//find minimum value
-
-		//		}
-		//	}
-		//}
-		Debug.Log (string.Format("{0:00} : {1:00} : {2:000}", GlobalMovieTimer.Minutes, GlobalMovieTimer.Seconds, GlobalMovieTimer.Fraction));
+        foreach (MarkerXMLWrapper a in parser.MarkerList)
+        {
+            foreach (MarkerWrapper b in a.TrackList)
+            {
+                
+                if (b.M_Timer == GlobalMovieTimer)
+                {
+                }
+            }
+        }
+        Debug.Log (string.Format("{0:00} : {1:00} : {2:000}", GlobalMovieTimer.Minutes, GlobalMovieTimer.Seconds, GlobalMovieTimer.Fraction));
 	}
 }

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MovieTimer : System.Object {
+public class MovieTimer : Object {
 	private float time;
 	private float minutes;
 	private float seconds;
@@ -39,6 +39,14 @@ public class MovieTimer : System.Object {
 		fraction = (time * 100) % 100;
 	}
 
+    public MovieTimer(float _m, float _s, float _f)
+    {
+        minutes = _m;
+        seconds = _s;
+        fraction = _f;
+        time = (_m * 60) + seconds;
+    }
+    
 	public override bool Equals (object obj)
 	{
 		if(obj == null) {
@@ -54,7 +62,17 @@ public class MovieTimer : System.Object {
 		}
 	}
 
-	public static MovieTimer operator+(MovieTimer a, float b) {
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+
+    public override string ToString()
+    {
+        return base.ToString();
+    }
+
+    public static MovieTimer operator+(MovieTimer a, float b) {
 		return new MovieTimer(a.TotalTime + b);
 	}
 
