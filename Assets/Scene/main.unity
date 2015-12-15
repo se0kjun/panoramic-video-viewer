@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77da7d1afa5d9424e8c3d5b103a79b15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  XMLFileName: test.xml
+  XMLFileName: data.xml
   cube_plane:
   - {fileID: 918679834}
   - {fileID: 379596659}
@@ -1054,7 +1054,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2129704356}
-  m_LocalRotation: {x: .707106709, y: .707106829, z: 1.15202326e-07, w: -1.15202312e-07}
+  m_LocalRotation: {x: .499999911, y: .50000006, z: -.500000119, w: .5}
   m_LocalPosition: {x: -5, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

@@ -39,11 +39,13 @@ public class MarkerWrapper {
 		}
 	}
 
-	public MarkerWrapper(string _v, int _f, int _x, int _y) {
+	public MarkerWrapper(string _v, int _f, int _x, int _y, List<VideoXMLWrapper> a) {
 		_videoId = _v;
 		_frameId = _f;
 		_position_X = _x;
 		_position_Y = _y;
+        float seconds = Mathf.Floor(_frameId / a[int.Parse(_v)].FPS);
+        _timer = new MovieTimer(seconds / 60, seconds % 60, 0);
 	}
 }
 
