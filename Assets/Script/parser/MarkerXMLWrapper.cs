@@ -53,10 +53,14 @@ public class MarkerXMLWrapper {
 	private int _markerId;
 	private List<MarkerWrapper> _markerwrapper;
 
-	public int MarkerID {
-		get {
-			return _markerId;
-		}
+    public int MarkerID {
+        get {
+            return _markerId;
+        }
+        set
+        {
+            _markerId = value;
+        }
 	}
 
 	public List<MarkerWrapper> TrackList {
@@ -64,6 +68,27 @@ public class MarkerXMLWrapper {
 			return _markerwrapper;
 		}
 	}
+
+    public int StartFrame
+    {
+        get
+        {
+            return _markerwrapper[0].FrameID;
+        }
+    }
+
+    public int EndFrame
+    {
+        get
+        {
+            return _markerwrapper[_markerwrapper.Count - 1].FrameID;
+        }
+    }
+
+    public MarkerXMLWrapper()
+    {
+        _markerwrapper = new List<MarkerWrapper>();
+    }
 
 	public MarkerXMLWrapper(int _m) {
 		_markerId = _m;
