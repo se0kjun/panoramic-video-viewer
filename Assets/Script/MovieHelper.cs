@@ -26,10 +26,7 @@ public class MovieHelper : MonoBehaviour {
 
             foreach (DataWrapper a in tracking_object)
             {
-                GameObject tmp = new GameObject();
-                tmp.tag = "Finish";
-                tmp.name = "test";
-                int current_frame = GameManager.GlobalMovieTimer.GetFrame(10);
+                int current_frame = GameManager.GlobalMovieTimer.GetFrame(Util.MOVIE_FRAME);
                 int frame_idx = 0;
                 int prev_frame = int.MaxValue;
                 foreach (MarkerWrapper b in a.MarkerWrapper.TrackList)
@@ -40,24 +37,29 @@ public class MovieHelper : MonoBehaviour {
                         frame_idx = a.MarkerWrapper.TrackList.IndexOf(b);
                     }
                 }
-
-                tmp.transform.position = Util.GetVideoPoint(a.MarkerWrapper.TrackList[frame_idx].PositionX,
+                GameObject tmp = new GameObject();
+                tmp.tag = "Finish";
+                tmp.name = "test";
+                tmp.transform.localScale = new Vector3(.1f, .1f, .1f);
+                tmp.transform.parent = a.MarkerWrapper.TrackList[frame_idx].VideoInstance.ObjectPlane.transform;
+                tmp.transform.localPosition = Util.GetVideoPoint(
+                    a.MarkerWrapper.TrackList[frame_idx].VideoInstance,
+                    a.MarkerWrapper.TrackList[frame_idx].PositionX,
                     a.MarkerWrapper.TrackList[frame_idx].PositionY);
-                tmp.transform.parent = gameObject.transform;
             }
         }
         else if (mode == 1 && !moving_state)
         {
-            if(tracking_object.Count == 0)
-            {
-                moving_state = true;
-                return;
-            }
+            //if(tracking_object.Count == 0)
+            //{
+            //    moving_state = true;
+            //    return;
+            //}
 
-            if(tracking_space.transform.localEulerAngles.y != (360 - (int.Parse(tracking_object[0].MarkerWrapper.TrackList[0].VideoID) * 90)))
-            {
-                tracking_space.transform.Rotate(Vector3.up * 120 * Time.deltaTime);
-            }
+            //if(tracking_space.transform.localEulerAngles.y != (360 - (int.Parse(tracking_object[0].MarkerWrapper.TrackList[0].VideoID) * 90)))
+            //{
+            //    tracking_space.transform.Rotate(Vector3.up * 120 * Time.deltaTime);
+            //}
         }
 	}
 }
