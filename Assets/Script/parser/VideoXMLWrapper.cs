@@ -44,6 +44,11 @@ public class VideoXMLWrapper {
         }
     }
 
+    public GameObject ObjectPlane
+    {
+        get; set;
+    }
+
 	public VideoXMLWrapper(string _f, int _s, int _fs, int _h, int _w) {
 		_file = _f;
 		_fileSequence = _s;

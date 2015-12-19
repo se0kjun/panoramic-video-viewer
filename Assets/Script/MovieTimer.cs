@@ -49,15 +49,6 @@ public class MovieTimer : Object {
     
     public int GetFrame(int frame)
     {
-        //if((int)fraction < 50)
-        //{
-        //    return ((int)seconds * frame) + (int)( (fraction + 50) / (100 / frame) ); 
-        //}
-        //else
-        //{
-        //    return ((int)seconds * frame) + (int)((fraction - 50) / (100 / frame));
-        //}
-
         return ((int)seconds * frame) + (int)((fraction) / (100 / frame));
     }
 

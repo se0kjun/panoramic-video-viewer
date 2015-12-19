@@ -3,17 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class MarkerWrapper {
-	private string _videoId;
 	private int _frameId;
 	private int _position_X;
 	private int _position_Y;
-	private MovieTimer _timer;
-
-	public MovieTimer M_Timer {
-		get {
-			return _timer;
-		}
-	}
+    private VideoXMLWrapper _videoInstance;
 
 	public int FrameID {
 		get {
@@ -33,19 +26,17 @@ public class MarkerWrapper {
 		}
 	}
 
-	public string VideoID {
+	public VideoXMLWrapper VideoInstance {
 		get {
-			return _videoId;
+			return _videoInstance;
 		}
 	}
 
-	public MarkerWrapper(string _v, int _f, int _x, int _y, List<VideoXMLWrapper> a) {
-		_videoId = _v;
+	public MarkerWrapper(int _f, int _x, int _y, VideoXMLWrapper _v) {
 		_frameId = _f;
 		_position_X = _x;
 		_position_Y = _y;
-        float seconds = Mathf.Floor(_frameId / a[int.Parse(_v)].FPS);
-        _timer = new MovieTimer(seconds / 60, seconds % 60, 0);
+        _videoInstance = _v;
 	}
 }
 
@@ -81,7 +72,10 @@ public class MarkerXMLWrapper {
     {
         get
         {
-            return _markerwrapper[_markerwrapper.Count - 1].FrameID;
+            if (_markerwrapper.Count != 0)
+                return _markerwrapper[_markerwrapper.Count - 1].FrameID;
+            else
+                return 0;
         }
     }
 
