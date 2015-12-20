@@ -7,6 +7,8 @@ public class VideoXMLParser {
     private static readonly VideoXMLParser _instance = new VideoXMLParser();
 	private XmlDocument _XMLDocument;
     public Dictionary<string, VideoXMLWrapper> _video_wrapper;
+    public List<DataWrapper> _marker_wrapper = new List<DataWrapper>();
+
 
     public static VideoXMLParser Instance
     {
@@ -31,28 +33,9 @@ public class VideoXMLParser {
 
     public List<DataWrapper> ParseXML() {
         ParseVideoXML();
-        List<DataWrapper> result = new List<DataWrapper>();
-		XmlNodeList marker_node = _XMLDocument.SelectNodes("/data/markers/marker");
+        ParseMarkerXML();
 
-		foreach(XmlNode marker in marker_node) {
-			int markerId = int.Parse(marker.Attributes.GetNamedItem("id").Value);
-			XmlNodeList track_list = marker.ChildNodes;
-            DataWrapper tmp = new DataWrapper(markerId);
-            foreach (XmlNode track in track_list) {
-				string video_id = track.Attributes.GetNamedItem("video").Value;
-				int pos_x = (int)float.Parse(track.Attributes.GetNamedItem("position_x").Value.ToString());
-				int pos_y = (int)float.Parse(track.Attributes.GetNamedItem("position_y").Value.ToString());
-				int frame_id = int.Parse(track.Attributes.GetNamedItem("frame").Value.ToString());
-                VideoXMLWrapper vwrap;
-                _video_wrapper.TryGetValue(video_id, out vwrap);
-				tmp.MarkerWrapper.TrackList.Add (new MarkerWrapper(
-					frame_id, pos_x, pos_y, vwrap
-					));
-			}
-            result.Add(tmp);
-        }
-
-        return result;
+        return _marker_wrapper;
 	}
 
     private void ParseVideoXML()
@@ -70,6 +53,31 @@ public class VideoXMLParser {
                 );
             tmp.ObjectPlane = GameObject.Find("Plane (" + video.Attributes.GetNamedItem("seq").Value + ")");
             _video_wrapper.Add(video.Attributes.GetNamedItem("seq").Value, tmp);
+        }
+    }
+
+    private void ParseMarkerXML()
+    {
+        XmlNodeList marker_node = _XMLDocument.SelectNodes("/data/markers/marker");
+
+        foreach (XmlNode marker in marker_node)
+        {
+            int markerId = int.Parse(marker.Attributes.GetNamedItem("id").Value);
+            XmlNodeList track_list = marker.ChildNodes;
+            DataWrapper tmp = new DataWrapper(markerId);
+            foreach (XmlNode track in track_list)
+            {
+                string video_id = track.Attributes.GetNamedItem("video").Value;
+                int pos_x = (int)float.Parse(track.Attributes.GetNamedItem("position_x").Value.ToString());
+                int pos_y = (int)float.Parse(track.Attributes.GetNamedItem("position_y").Value.ToString());
+                int frame_id = int.Parse(track.Attributes.GetNamedItem("frame").Value.ToString());
+                VideoXMLWrapper vwrap;
+                _video_wrapper.TryGetValue(video_id, out vwrap);
+                tmp.MarkerWrapper.TrackList.Add(new MarkerWrapper(
+                    frame_id, pos_x, pos_y, vwrap
+                    ));
+            }
+            _marker_wrapper.Add(tmp);
         }
     }
 }

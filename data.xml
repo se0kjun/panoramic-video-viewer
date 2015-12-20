@@ -1,34 +1,34 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <data>
   <videos>
-    <video seq="0" frame="20" width="640" height="480">D:\tmp\test1.avi</video>
-    <video seq="1" frame="20" width="640" height="480">D:\tmp\test0.avi</video>
+    <video seq="0" frame="20" width="640" height="480">D:/tmp/test0.avi</video>
+    <video seq="1" frame="20" width="640" height="480">D:/tmp/test1.avi</video>
   </videos>
   <markers>
     <marker id="213">
-      <track video="1" position_x="568.986" position_y="66.45454" frame="135" />
-      <track video="1" position_x="563.8741" position_y="62.87006" frame="136" />
-      <track video="1" position_x="564.9917" position_y="64.9281" frame="137" />
-      <track video="1" position_x="561.7873" position_y="63.43787" frame="139" />
-      <track video="1" position_x="561.1898" position_y="68.4064" frame="140" />
-      <track video="1" position_x="559.514" position_y="77.23617" frame="142" />
-      <track video="1" position_x="567.7394" position_y="88.38063" frame="144" />
-      <track video="1" position_x="565.3909" position_y="71.21922" frame="146" />
-      <track video="1" position_x="564.3946" position_y="72.17061" frame="147" />
-      <track video="1" position_x="548.828" position_y="56.53821" frame="149" />
-      <track video="1" position_x="567.7614" position_y="68.11421" frame="151" />
-      <track video="1" position_x="574.0835" position_y="67.98721" frame="152" />
+      <track video="0" position_x="568.986" position_y="66.45454" frame="135" />
+      <track video="0" position_x="563.8741" position_y="62.87006" frame="136" />
+      <track video="0" position_x="564.9917" position_y="64.9281" frame="137" />
+      <track video="0" position_x="561.7873" position_y="63.43787" frame="139" />
+      <track video="0" position_x="561.1898" position_y="68.4064" frame="140" />
+      <track video="0" position_x="559.514" position_y="77.23617" frame="142" />
+      <track video="0" position_x="567.7394" position_y="88.38063" frame="144" />
+      <track video="0" position_x="565.3909" position_y="71.21922" frame="146" />
+      <track video="0" position_x="564.3946" position_y="72.17061" frame="147" />
+      <track video="0" position_x="548.828" position_y="56.53821" frame="149" />
+      <track video="0" position_x="567.7614" position_y="68.11421" frame="151" />
+      <track video="0" position_x="574.0835" position_y="67.98721" frame="152" />
     </marker>
     <marker id="213">
-      <track video="0" position_x="212.9097" position_y="77.28625" frame="202" />
-      <track video="0" position_x="209.2478" position_y="79.76004" frame="203" />
-      <track video="0" position_x="208.1457" position_y="82.3266" frame="204" />
-      <track video="0" position_x="210.4155" position_y="82.71315" frame="205" />
-      <track video="0" position_x="211.5653" position_y="81.91927" frame="206" />
-      <track video="0" position_x="211.9136" position_y="80.93211" frame="207" />
-      <track video="0" position_x="213.3264" position_y="82.82495" frame="208" />
-      <track video="0" position_x="213.9269" position_y="82.9295" frame="209" />
-      <track video="0" position_x="213.0062" position_y="82.88469" frame="210" />
+      <track video="1" position_x="212.9097" position_y="77.28625" frame="202" />
+      <track video="1" position_x="209.2478" position_y="79.76004" frame="203" />
+      <track video="1" position_x="208.1457" position_y="82.3266" frame="204" />
+      <track video="1" position_x="210.4155" position_y="82.71315" frame="205" />
+      <track video="1" position_x="211.5653" position_y="81.91927" frame="206" />
+      <track video="1" position_x="211.9136" position_y="80.93211" frame="207" />
+      <track video="1" position_x="213.3264" position_y="82.82495" frame="208" />
+      <track video="1" position_x="213.9269" position_y="82.9295" frame="209" />
+      <track video="1" position_x="213.0062" position_y="82.88469" frame="210" />
     </marker>
   </markers>
 </data>

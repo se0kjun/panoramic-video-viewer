@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
 
 	[HideInInspector]
 	public static MovieTimer GlobalMovieTimer;
+    public static Dictionary<string, GameObject> outside_camera_object = new Dictionary<string, GameObject>();
 
 	void Start () {
         cube_movie = new List<MovieTexture>();
@@ -42,23 +43,9 @@ public class GameManager : MonoBehaviour {
                 cube_movie.Add(tmp);
             }
         }
-        Debug.Log(myCam.ScreenToWorldPoint(Vector3.zero));
-        Debug.Log(myCam.ScreenToWorldPoint(new Vector3(10.0f, 10.0f, -20.0f)));
     }
 
     void Update () {
-        Ray ray = myCam.ScreenPointToRay(Input.mousePosition);
-        Plane xy = new Plane(Vector3.forward, new Vector3(0, 0, myCam.farClipPlane));
-        float distance;
-        xy.Raycast(ray, out distance);
-        ray.GetPoint(distance);
-        Debug.DrawLine(myCam.transform.position, ray.GetPoint(distance));
-        Vector3 m = Input.mousePosition;
-        Debug.Log(myCam.nearClipPlane);
-        m.z = 5.0f;// myCam.nearClipPlane;
-
-        Debug.Log(myCam.ScreenToWorldPoint(m));
-
         GlobalMovieTimer += Time.deltaTime;
 
         int curr_frame = GlobalMovieTimer.GetFrame(Util.MOVIE_FRAME);
@@ -66,14 +53,10 @@ public class GameManager : MonoBehaviour {
         {
             if(data.MarkerWrapper.StartFrame < curr_frame && data.MarkerWrapper.EndFrame > curr_frame)
             {
-                //data.TrackingState = DataWrapper.TrackState.START;
                 MovieHelper.tracking_object.Add(data);
             }
         }
 
         MovieHelper.tracking_object.RemoveAll(item => (item.MarkerWrapper.EndFrame < curr_frame));
-        //Debug.Log(curr_frame);
-        //Debug.Log(GlobalMovieTimer.Seconds.ToString() + ":" + GlobalMovieTimer.Fraction.ToString() + "-----" + curr_frame.ToString());
-        //Debug.Log(string.Format("{0:00} : {1:00} : {2:} - {3:}", GlobalMovieTimer.Minutes, (int)GlobalMovieTimer.Seconds, (int)GlobalMovieTimer.Fraction, curr_frame));
     }
 }
