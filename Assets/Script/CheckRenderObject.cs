@@ -4,7 +4,8 @@ using System.Collections;
 public class CheckRenderObject : MonoBehaviour {
     void OnBecameVisible()
     {
-        Debug.Log("testsetsetsetset");
+        //GameManager.outside_camera_object.Remove(gameObject.name);
+        Debug.Log(Camera.current.name);
     }
 
     //void OnBecameInvisible()
@@ -13,6 +14,7 @@ public class CheckRenderObject : MonoBehaviour {
     //}
     void OnWillRenderObject()
     {
+        Debug.Log("testsetsetsetset222222222222222222");
         GameManager.outside_camera_object.Remove(gameObject.name);
 
         //if (Camera.current.name == "CenterEyeAnchor")

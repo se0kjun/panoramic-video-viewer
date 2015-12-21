@@ -72,12 +72,16 @@ public class OVRArrowHelper : MonoBehaviour {
         }
         else
         {
-            if(side_object.FindAll(item => item == OutsideObjectType.LEFT).Count > 0 )
+            int left_obj = side_object.FindAll(item => item == OutsideObjectType.LEFT).Count;
+            int right_obj = side_object.FindAll(item => item == OutsideObjectType.RIGHT).Count;
+            if(left_obj > 0 && left_obj > right_obj)
             {
+                RightArrow.enabled = false;
                 LeftArrow.enabled = true;
             }
-            else if(side_object.FindAll(item => item == OutsideObjectType.RIGHT).Count > 0)
+            else if(right_obj > 0 && right_obj > left_obj)
             {
+                LeftArrow.enabled = false;
                 RightArrow.enabled = true;
             }
         }
